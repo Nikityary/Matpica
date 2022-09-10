@@ -9,24 +9,27 @@ namespace Matpica
 {
     internal class Matrix
     {
-        public int k, t, i, j;
         double[,] DoubleArray;
-        int n, m;
+        double[,] DoubleArray2;
+        double[,] DoubleArray3;
+        int n, m, i, j, k, t, z, c;
 
         public Matrix(int n, int m)
         {
             this.n = n;
             this.m = m;
             DoubleArray = new double[n, m];
+            DoubleArray2 = new double[n, m];
+            DoubleArray3 = new double[n, m];
         }
 
         //ПЕРВАЯ МАТРИЦА
         // Ввести элементы
         public void EnterElements()
         {
-            for (int i = 0; i < n; i++)
+            for (i = 0; i < n; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (j = 0; j < m; j++)
                 {
                     Console.Write("Введите элемнет [{0},{1}] :  ", i, j);
                     DoubleArray[i, j] = Double.Parse(Console.ReadLine());
@@ -37,9 +40,9 @@ namespace Matpica
         // Вывести элементы матрицы на экран
         public void PrintMatrix()
         {
-            for (int i = 0; i < n; i++)
+            for (i = 0; i < n; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (j = 0; j < m; j++)
                 {
                     Console.Write(DoubleArray[i, j] + " ");
                 }
@@ -51,12 +54,12 @@ namespace Matpica
         // Ввести элементы
         public void EnterElements2()
         {
-            for (int k = 0; k < n; k++)
+            for (k = 0; k < n; k++)
             {
-                for (int t = 0; t < m; t++)
+                for (t = 0; t < m; t++)
                 {
                     Console.Write("Введите элемнет [{0},{1}] :  ", k, t);
-                    DoubleArray[k, t] = Double.Parse(Console.ReadLine());
+                    DoubleArray2[k, t] = Double.Parse(Console.ReadLine());
                 }
             }
         }
@@ -64,11 +67,11 @@ namespace Matpica
         // Вывести элементы матрицы на экран
         public void PrintMatrix2()
         {
-            for (int k = 0; k < n; k++)
+            for (k = 0; k < n; k++)
             {
-                for (int t = 0; t < m; t++)
+                for (t = 0; t < m; t++)
                 {
-                    Console.Write(DoubleArray[k, t] + " ");
+                    Console.Write(DoubleArray2[k, t] + " ");
                 }
                 Console.WriteLine();
             }
@@ -77,30 +80,28 @@ namespace Matpica
         //Сложение матриц 1 и 2
         public void Plus()
         {
-            for (int z = 0; z < n; z++)
+            for (i = 0; i < n; i++)
             {
-                for (int c = 0; c < m; c++)
+                for (j = 0; j < m; j++)
                 {
-                    int[,] mat3 = new int[z, c];
-                     DoubleArray[z, c] = DoubleArray[k, t] + DoubleArray[i, j];
+                    DoubleArray3[z, c] = DoubleArray[i, j] + DoubleArray2[k, t];
                 }
-                Console.WriteLine();
             }
         }
         // Вывести результат на экран
         public void PrintMatrix3()
         {
-            for (int z = 0; z < n; z++)
+            for (z = 0; z < n; z++)
             {
-                for (int c = 0; c < m; c++)
+                for (c = 0; c < m; c++)
                 {
-                    Console.Write(DoubleArray[z, c] + " ");
+                    Console.Write(DoubleArray3[z, c] + " ");
                 }
                 Console.WriteLine();
             }
         }
 
-        // Умножение
+        // Умножение на число
         public double Multiply
         {
             set
