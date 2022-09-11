@@ -14,7 +14,9 @@ namespace Matpica
         int[,] DoubleArray;
         int[,] DoubleArray2;
         int[,] DoubleArray3;
-        int n, m, i, j, k, t, z, c;
+        int n, m, i, j, k, t;
+        int z = 0;
+        int c = 0;
 
         public Matrix(int n, int m)
         {
@@ -86,7 +88,7 @@ namespace Matpica
             {
                  for (c = 0; c < m; c++)
                  {
-                    DoubleArray3[z, c] = DoubleArray[i, j] + DoubleArray2[k, t];                      БОЛЬ
+                    DoubleArray3[z, c] = DoubleArray[i, j] + DoubleArray2[k, t];
                  }
             }
         }
@@ -118,6 +120,7 @@ namespace Matpica
                 }
             }
         }
+        /*
         public void Umn()
         {
             for (i = 0; i < n; i++)
@@ -132,6 +135,6 @@ namespace Matpica
                     Console.WriteLine();
                 }
             }
-        }
+        }*/
     }
 }

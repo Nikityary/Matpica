@@ -29,10 +29,10 @@ namespace Matpica
             mat1.Multiply = Convert.ToInt32(Console.ReadLine());
             mat1.PrintMatrix(); //Отобразить матрицу
             Console.WriteLine(new string('-', 35));
-
+            /*
             Console.WriteLine("Результат перемножения матриц: ");
             mat1.Umn();
-            Console.WriteLine(new String('-', 35));
+            Console.WriteLine(new String('-', 35));*/
             Console.ReadKey();
         }
     }
