@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Matpica;
+using Baseline.ImTools;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
@@ -9,30 +11,30 @@ namespace Matpica
 {
     internal class Matrix
     {
-        double[,] DoubleArray;
-        double[,] DoubleArray2;
-        double[,] DoubleArray3;
-        int n, m;
+        int[,] DoubleArray;
+        int[,] DoubleArray2;
+        int[,] DoubleArray3;
+        int n, m, i, j, k, t, z, c;
 
         public Matrix(int n, int m)
         {
             this.n = n;
             this.m = m;
-            DoubleArray = new double[n, m];
-            DoubleArray2 = new double[n, m];
-            DoubleArray3 = new double[n, m];
+            DoubleArray = new int[n, m];
+            DoubleArray2 = new int[n, m];
+            DoubleArray3 = new int[n, m];
         }
 
         //ПЕРВАЯ МАТРИЦА
         // Ввести элементы
         public void EnterElements()
         {
-            for (int z = 0; z < n; z++)
+            for (i = 0; i < n; i++)
             {
-                for (int k = 0; k < m; k++)
+                for (j = 0; j < m; j++)
                 {
-                    Console.Write("Введите элемнет [{0},{1}] :  ", z, k);
-                    DoubleArray[z, k] = Double.Parse(Console.ReadLine());
+                    Console.Write("Введите элемнет [{0},{1}] :  ", i, j);
+                    DoubleArray[i, j] = Convert.ToInt32(Console.ReadLine());
                 }
             }
         }
@@ -40,11 +42,11 @@ namespace Matpica
         // Вывести элементы матрицы на экран
         public void PrintMatrix()
         {
-            for (int z = 0; z < n; z++)
+            for (i = 0; i < n; i++)
             {
-                for (int k = 0; k < m; k++)
+                for (j = 0; j < m; j++)
                 {
-                    Console.Write(DoubleArray[z, k] + " ");
+                    Console.Write(DoubleArray[i, j] + " ");
                 }
                 Console.WriteLine();
             }
@@ -54,12 +56,12 @@ namespace Matpica
         // Ввести элементы
         public void EnterElements2()
         {
-            for (int k = 0; k < n; k++)
+            for (k = 0; k < n; k++)
             {
-                for (int c = 0; c < m; c++)
+                for (t = 0; t < m; t++)
                 {
-                    Console.Write("Введите элемнет [{0},{1}] :  ", k, c);
-                    DoubleArray2[k, c] = Double.Parse(Console.ReadLine());
+                    Console.Write("Введите элемнет [{0},{1}] :  ", k, t);
+                    DoubleArray2[k, t] = Convert.ToInt32(Console.ReadLine());
                 }
             }
         }
@@ -67,65 +69,67 @@ namespace Matpica
         // Вывести элементы матрицы на экран
         public void PrintMatrix2()
         {
-            for (int k = 0; k < n; k++)
+            for (k = 0; k < n; k++)
             {
-                for (int c = 0; c < m; c++)
+                for (t = 0; t < m; t++)
                 {
-                    Console.Write(DoubleArray2[k, c] + " ");
+                    Console.Write(DoubleArray2[k, t] + " ");
                 }
                 Console.WriteLine();
             }
         }
-
+        /*
         //Сложение матриц 1 и 2
- //       public void Plus()
- //       {
- //           for (i = 0; i < n; i++)
- //           {
- //               for (j = 0; j < m; j++)
- //               {
- //                   DoubleArray3[z, c] = DoubleArray[i, j] + DoubleArray2[k, t];
- //               }
- //           }
- //       }
+        public void Plus()
+        {
+            for (z = 0; z < n; z++)
+            {
+                 for (c = 0; c < m; c++)
+                 {
+                    DoubleArray3[z, c] = DoubleArray[i, j] + DoubleArray2[k, t];                      БОЛЬ
+                 }
+            }
+        }
+        
         // Вывести результат на экран
- //       public void PrintMatrix3()
- //       {
- //           for (z = 0; z < n; z++)
- //           {
- //               for (c = 0; c < m; c++)
- //               {
- //                   Console.Write(DoubleArray3[z, c] + " ");
- //               }
- //               Console.WriteLine();
- //           }
- //       }
-
+        public void PrintMatrix3()
+        {
+            for (z = 0; z < n; z++)
+            {
+                for (c = 0; c < m; c++)
+                {
+                    Console.Write(DoubleArray3[z, c] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        */
         // Умножение на число
-        public double Multiply
+        public int Multiply
         {
             set
             {
-                for (int z = 0; z < n; z++)
+                for (i = 0; i < n; i++)
                 {
-                    for (int k = 0; k < m; k++)
+                    for (j = 0; j < m; j++)
                     {
-                        DoubleArray[z, k] *= value;
+                        DoubleArray[i, j] *= value;
                     }
                 }
             }
         }
         public void Umn()
         {
-            for (int z = 0; z < DoubleArray.GetLength(0); z++)
+            for (i = 0; i < n; i++)
             {
-                for (int c = 0; c < DoubleArray2.GetLength(1); c++)
+                for (t = 0; t < m; t++)
                 {
-                    for (int k = 0; k < DoubleArray2.GetLength(0); k++)
+                   for (k = 0; k < n; k++)
                     {
-                        DoubleArray3[z, c] += DoubleArray[z, k] * DoubleArray2[k, c];
+                        DoubleArray3[z, c] = DoubleArray[i, j] * DoubleArray2[k, t];
                         Console.Write(DoubleArray3[z, c] + " ");
                     }
+                    Console.WriteLine();
                 }
             }
         }
