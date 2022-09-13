@@ -11,130 +11,77 @@ namespace Matpica
 {
     internal class Matrix
     {
-        int[,] DoubleArray;
-        int[,] DoubleArray2;
-        int[,] DoubleArray3;
-        int n, m, i, j, k, t;
-        int z = 0;
-        int c = 0;
+        private int a;
+        private int b;
+        private int[,] matrica;
+        private static Random rand = new Random();
 
-        public Matrix(int n, int m)
+        public Matrix(int a, int b)
         {
-            this.n = n;
-            this.m = m;
-            DoubleArray = new int[n, m];
-            DoubleArray2 = new int[n, m];
-            DoubleArray3 = new int[n, m];
-        }
-
-        //ПЕРВАЯ МАТРИЦА
-        // Ввести элементы
-        public void EnterElements()
-        {
-            for (i = 0; i < n; i++)
+            this.a = a;
+            this.b = b;
+            this.matrica = new int[a, b];
+            for (int a1 = 0; a1 < a; a1++)
             {
-                for (j = 0; j < m; j++)
+                for (int b1 = 0; b1 < b; b1++)
                 {
-                    Console.Write("Введите элемнет [{0},{1}] :  ", i, j);
-                    DoubleArray[i, j] = Convert.ToInt32(Console.ReadLine());
+                    this.matrica[a1, b1] = rand.Next(20); //Макс. значения чисел в матрице
                 }
             }
         }
-
-        // Вывести элементы матрицы на экран
+        //Сумма матриц
+        public void Sum(Matrix matrix)
+        {
+           for (int a1 = 0; a1 < this.a; a1++)
+           {
+              for (int b1 = 0; b1 < this.b; b1++)
+              {
+                  this.matrica[a1, b1] = this.matrica[a1, b1] + matrix.matrica[a1, b1];
+              }
+           }
+        }
+        //Вывод матрицы
         public void PrintMatrix()
         {
-            for (i = 0; i < n; i++)
+            for (int a1 = 0; a1 < this.a; a1++)
             {
-                for (j = 0; j < m; j++)
+                for (int b1 = 0; b1 < this.b; b1++)
                 {
-                    Console.Write(DoubleArray[i, j] + " ");
+                    Console.Write(this.matrica[a1, b1] + " ");
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
-
-        //ВТОРАЯ МАТРИЦА
-        // Ввести элементы
-        public void EnterElements2()
+        //Умножение матрицы на число
+        public void MultiplyOnNumber(int num)
         {
-            for (k = 0; k < n; k++)
+            for (int a1 = 0; a1 < this.a; a1++)
             {
-                for (t = 0; t < m; t++)
+                for (int b1 = 0; b1 < this.b; b1++)
                 {
-                    Console.Write("Введите элемнет [{0},{1}] :  ", k, t);
-                    DoubleArray2[k, t] = Convert.ToInt32(Console.ReadLine());
+                    this.matrica[a1, b1] = this.matrica[a1, b1] * num;
                 }
             }
         }
-
-        // Вывести элементы матрицы на экран
-        public void PrintMatrix2()
+        //Перемножение матриц
+        public void MultiplyOnMatrix(Matrix matrix)
         {
-            for (k = 0; k < n; k++)
-            {
-                for (t = 0; t < m; t++)
-                {
-                    Console.Write(DoubleArray2[k, t] + " ");
-                }
-                Console.WriteLine();
-            }
+          int[,] result = new int[this.a, matrix.b];
+          for (int a1 = 0; a1 < this.a; a1++)
+          {
+              for (int b1 = 0; b1 < matrix.b; b1++)
+              {
+                   result[a1, b1] = 0;
+                   for (int c1 = 0; c1 < matrix.a; c1++)
+                   {
+                       result[a1, b1] = result[a1, b1] + this.matrica[a1, c1] * matrix.matrica[c1, b1];
+                   }
+              }
+          }
+          this.matrica = result;
+          this.a = result.GetLength(0);
+          this.b = result.GetLength(1);
         }
-        /*
-        //Сложение матриц 1 и 2
-        public void Plus()
-        {
-            for (z = 0; z < n; z++)
-            {
-                 for (c = 0; c < m; c++)
-                 {
-                    DoubleArray3[z, c] = DoubleArray[i, j] + DoubleArray2[k, t];
-                 }
-            }
-        }
-        
-        // Вывести результат на экран
-        public void PrintMatrix3()
-        {
-            for (z = 0; z < n; z++)
-            {
-                for (c = 0; c < m; c++)
-                {
-                    Console.Write(DoubleArray3[z, c] + " ");
-                }
-                Console.WriteLine();
-            }
-        }
-        */
-        // Умножение на число
-        public int Multiply
-        {
-            set
-            {
-                for (i = 0; i < n; i++)
-                {
-                    for (j = 0; j < m; j++)
-                    {
-                        DoubleArray[i, j] *= value;
-                    }
-                }
-            }
-        }
-        /*
-        public void Umn()
-        {
-            for (i = 0; i < n; i++)
-            {
-                for (t = 0; t < m; t++)
-                {
-                   for (k = 0; k < n; k++)
-                    {
-                        DoubleArray3[z, c] = DoubleArray[i, j] * DoubleArray2[k, t];
-                        Console.Write(DoubleArray3[z, c] + " ");
-                    }
-                    Console.WriteLine();
-                }
-            }
-        }*/
     }
 }

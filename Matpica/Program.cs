@@ -8,31 +8,29 @@ namespace Matpica
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Matrix mat1 = new Matrix(3, 3);
-            mat1.EnterElements(); //Ввести элементы матрицы
-            Console.WriteLine(new string('-', 35));
-            mat1.PrintMatrix(); //Отобразить матрицу
-            Console.WriteLine(new string('-', 35));
-
-            mat1.EnterElements2(); //Ввести элементы матрицы 2
-            Console.WriteLine(new string('-', 35));
-            mat1.PrintMatrix2(); //Отобразить матрицу 2
-            Console.WriteLine(new string('-', 35));
-            /*
-            mat1.Plus();
-            mat1.PrintMatrix3(); //Отобразить матрицу 3
-            Console.WriteLine(new string('-', 35));
-            */
-            Console.Write("Введите множитель: ");
-            mat1.Multiply = Convert.ToInt32(Console.ReadLine());
-            mat1.PrintMatrix(); //Отобразить матрицу
-            Console.WriteLine(new string('-', 35));
-            /*
-            Console.WriteLine("Результат перемножения матриц: ");
-            mat1.Umn();
-            Console.WriteLine(new String('-', 35));*/
+            Matrix matrica1 = new Matrix(3, 3);
+            Matrix matrica2 = new Matrix(3, 3);
+            Matrix matrica3 = new Matrix(3, 3);
+            Matrix matrica4 = new Matrix(3, 3);
+            Console.WriteLine("\nПервая матрица:\n");
+            matrica1.PrintMatrix();
+            Console.WriteLine("Вторая матрица:\n");
+            matrica2.PrintMatrix();
+            Console.WriteLine("Сумма матриц 1 и 2:\n");
+            matrica1.Sum(matrica2);
+            matrica1.PrintMatrix();
+            Console.WriteLine("Результат умножения сложенных матриц на 2:\n");
+            matrica1.MultiplyOnNumber(2);
+            matrica1.PrintMatrix();
+            Console.WriteLine("Третья матрица:\n");
+            matrica3.PrintMatrix();
+            Console.WriteLine("Четвёртая матрица:\n");
+            matrica4.PrintMatrix();
+            Console.WriteLine("Результат перемножения матриц 3 и 4:\n");
+            matrica3.MultiplyOnMatrix(matrica4);
+            matrica3.PrintMatrix();
             Console.ReadKey();
         }
     }
